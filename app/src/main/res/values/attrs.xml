@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DrawView" >
+        <attr name="BallColor" format="color"></attr>
+        <attr name="BallRadius" format="float"></attr>
+        <attr name="BallStartX" format="float"/>
+        <attr name="BallStartY" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="DrawViewNew">
+        <attr name="CircleRadius" format="float"/>
+        <attr name="CircleStartX" format="float"/>
+        <attr name="CircleStartY" format="float"/>
+    </declare-styleable>
+</resources>
