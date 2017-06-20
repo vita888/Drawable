@@ -22,6 +22,8 @@ public class DrawViewNew extends View {
     private float mStartY;
     private int paintColor =Color.BLUE;
     private DrawViewNew mDrawViewNew;
+    private Paint mPaint =new Paint();
+
     public DrawViewNew (Context context, AttributeSet attr){
         super(context,attr);
         TypedArray a = context.obtainStyledAttributes(attr, R.styleable.DrawViewNew);
@@ -30,7 +32,7 @@ public class DrawViewNew extends View {
         mStartY = a.getFloat(R.styleable.DrawViewNew_CircleStartY,10);
 
         Log.e("tag", "DrawViewNew radius" + mcircleRadious);
-
+        a.recycle();
     }
 
     @Override
@@ -45,19 +47,16 @@ public class DrawViewNew extends View {
         return true;
     }
 
-//    @Override
-//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//        super.onMeasure(circleRadious, circleRadious);
-//    }
+
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Paint paint = new Paint();
 
-        paint.setColor(paintColor);
+
+        mPaint.setColor(paintColor);
         Log.e("tag", "radius" + mcircleRadious);
-        canvas.drawCircle(110,100,mcircleRadious,paint);
+        canvas.drawCircle(110,100,mcircleRadious,mPaint);
     }
 
     public void setCircleRadious(int circleRadious) {

@@ -16,19 +16,20 @@ import java.text.AttributedCharacterIterator;
  */
 
 public class DrawView extends View {
-    private float circleX ;
-    private float circleY ;
-    private float circleR ;
-    private int BallColor ;
+    private float mCircleX ;
+    private float mCircleY ;
+    private float mCircleR ;
+    private int mBallColor ;
+    Paint mPaint = new Paint();
 
 
     public DrawView(Context context, AttributeSet attr){
         super(context,attr);
         TypedArray a = context.obtainStyledAttributes(attr,R.styleable.DrawView);
-        circleX = a.getFloat(R.styleable.DrawView_BallStartX,10);
-        circleY = a.getFloat(R.styleable.DrawView_BallStartY,10);//设置默认值
-        circleR = a.getFloat(R.styleable.DrawView_BallRadius,10);
-        BallColor = a.getColor(R.styleable.DrawView_BallColor, 0x990000FF);
+        mCircleX = a.getFloat(R.styleable.DrawView_BallStartX,10);
+        mCircleY = a.getFloat(R.styleable.DrawView_BallStartY,10);//设置默认值
+        mCircleR = a.getFloat(R.styleable.DrawView_BallRadius,10);
+        mBallColor = a.getColor(R.styleable.DrawView_BallColor, 0x990000FF);
         a.recycle();
 
     }
@@ -37,42 +38,42 @@ public class DrawView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Paint paint = new Paint();
-        paint.setColor(BallColor);
-        canvas.drawCircle(circleX,circleY,circleR,paint);
+
+        mPaint.setColor(mBallColor);
+            canvas.drawCircle(mCircleX,mCircleY,mCircleR,mPaint);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        circleX = event.getX();
-        circleY = event.getY();
+        mCircleX = event.getX();
+        mCircleY = event.getY();
 
         this.invalidate();
         return true;
     }
 
     public float getCircleR() {
-        return circleR;
+        return mCircleR;
     }
     public float getCircleX(){
-        return  circleX;
+        return  mCircleX;
     }
 
     public float getCircleY() {
-        return circleY;
+        return mCircleY;
     }
 
     public void setCircleR(float circleR) {
-        this.circleR = circleR;
+        this.mCircleR = circleR;
     }
 
     public void setCircleX(float circleX) {
-        this.circleX = circleX;
+        this.mCircleX = circleX;
     }
 
     public void setCircleY(float circleY) {
-        this.circleY = circleY;
+        this.mCircleY = circleY;
     }
 
 }
