@@ -76,6 +76,7 @@ public class ViewGroupSquare extends ViewGroup {
         for (int i = 0;i<childrenNum;i++){
             childView = getChildAt(i);
             childrenWidth =childView.getMeasuredWidth();
+
             childrenHeight = childView.getMeasuredHeight();
             childrenParam =(MarginLayoutParams)childView.getLayoutParams();
 

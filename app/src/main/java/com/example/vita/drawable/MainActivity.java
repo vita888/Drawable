@@ -15,9 +15,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextView =(TextView) findViewById(R.id.txtShow3);
-
-        mDrawView = (DrawViewNew) findViewById(R.id.draw_view);
+//        mTextView =(TextView) findViewById(R.id.txtShow3);
+//
+//        mDrawView = (DrawViewNew) findViewById(R.id.draw_view);
 //        mDrawView.setOnTouchListener(new View.OnTouchListener() {
 //            @Override
 //            public boolean onTouch(View v, MotionEvent event) {
@@ -26,12 +26,12 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //
 //        });
-        mDrawView.setClickable(true);
-        mDrawView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mTextView.setText("点击了自定义控件");
-            }
-        });
+//        mDrawView.setClickable(true);
+//        mDrawView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mTextView.setText("点击了自定义控件");
+//            }
+//        });
     }
 }

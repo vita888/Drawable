@@ -14,7 +14,7 @@ public class ViewGroupFlow extends ViewGroup {
     private int childrenNum;
     private  View cView;
     private  MarginLayoutParams childrenParams=null;
-    private  int[] changeline;
+    private  int[] changeline ;
     private  int j = 1;
 
 
@@ -36,6 +36,7 @@ public class ViewGroupFlow extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        measureChildren(widthMeasureSpec,heightMeasureSpec);
 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int sizewidth = MeasureSpec.getSize(widthMeasureSpec);
@@ -47,34 +48,37 @@ public class ViewGroupFlow extends ViewGroup {
         int height = 0;
 
         childrenNum = getChildCount();
+        changeline = new int[childrenNum+1];
 
         int sumWidth = 0;
         int sunWidthTest = 0;
         int sumHeight = 0;
         int cHeight;
 
-        changeline[0]=0;
+         changeline[0]=0;
 
         for (int i=0;i<childrenNum;i++){
             cView=getChildAt(i);
             childrenParams =(MarginLayoutParams)cView.getLayoutParams();
 
             int childMargin = childrenParams.leftMargin+childrenParams.rightMargin;
-            int cWidth = cView.getWidth()+childMargin;
-            cHeight = cView.getHeight()+childrenParams.topMargin+ childrenParams.bottomMargin;
+            int cWidth = cView.getMeasuredWidth()+childMargin;
+            cHeight = cView.getMeasuredHeight()+childrenParams.topMargin+ childrenParams.bottomMargin;
 
             sunWidthTest = sumWidth +cWidth;
+
+            Log.i("第"+i+"个的"+cView.getMeasuredWidth()+"__"+childMargin,""+sunWidthTest+"与"+sizewidth);
 
             if (sunWidthTest<sizewidth){
                 sumWidth = sunWidthTest;
                 Log.i("######"+i,"     SumWidth"+sumWidth);
             }
-            else if (sunWidthTest==sizewidth){
+                else if (sunWidthTest==sizewidth){
                 width = sizewidth;
                 Log.i("sunWidthTest==sizewidth"+i,"  SumWidth"+sumWidth);
                 i=childrenNum;
             }
-                else{
+                    else{
                 width =Math.max(width,sumWidth);
                 sumWidth = 0;
                 height += cHeight;
@@ -96,10 +100,34 @@ public class ViewGroupFlow extends ViewGroup {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
 
-        for (int li = 1;li< j;li++){
-            int num = changeline[li]-changeline[li-1];
-            for (int i=0;i<)
-        }
+        int left= 0;
+        int top = 0;
+        int n = 0;
+        changeline[j] = getChildCount();
+        View cView1 = getChildAt(0);
+        MarginLayoutParams childrenParams1 =(MarginLayoutParams)cView1.getLayoutParams();
+        int lineHeight = childrenParams1.topMargin+cView1.getMeasuredHeight()+childrenParams1.bottomMargin;
+
+
+            for (int li = 1; li <= j; li++) {//对每一行遍历
+                int num = changeline[li] - changeline[li - 1];
+                for (int i = 0; i < num; i++) {//对某行的每一个view遍历
+
+                    cView = getChildAt(n);
+                    childrenParams =(MarginLayoutParams)cView.getLayoutParams();
+                    l = left+childrenParams.leftMargin;
+                    t = top +childrenParams.topMargin;
+                    r = l+cView.getMeasuredWidth();
+                    b = t+cView.getMeasuredHeight();
+
+                    cView.layout(l,t,r,b);
+                    Log.i("layout参数是","l="+l+".....t="+t+".....r="+r+".....b="+b);
+                    left = r+childrenParams.rightMargin;
+                    n++;
+                }
+                left = 0;
+                top += lineHeight;
+            }
 
     }
 }
