@@ -37,14 +37,16 @@ public class DrawViewNew extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.i("############","touch");
+
+    super.onTouchEvent(event);
 
         setPaintColor(Color.RED);
         Log.e("############","paintcolor"+paintColor);
         setCircleRadious(60);
         Log.e("############","touch radious"+mcircleRadious);
         this.invalidate();
-        return true;
+        Log.i("Touch","onTouchEvent..:  .  ."+event.getAction());
+        return false;
     }
 
 

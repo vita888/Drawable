@@ -12,6 +12,7 @@
         android:useLevel="false"></gradient>
 
 </shape>
+
 <!--<shape xmlns:android="http://schemas.android.com/apk/res/android"-->
     <!--android:innerRadiusRatio="8"-->
     <!--android:shape="ring"-->

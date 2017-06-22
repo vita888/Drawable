@@ -25,13 +25,12 @@ public class DrawView extends View {
 
     public DrawView(Context context, AttributeSet attr){
         super(context,attr);
-        TypedArray a = context.obtainStyledAttributes(attr,R.styleable.DrawView);
+        TypedArray a = context.obtainStyledAttributes(attr,R.styleable.DrawView);//获取xml里的属性值
         mCircleX = a.getFloat(R.styleable.DrawView_BallStartX,10);
         mCircleY = a.getFloat(R.styleable.DrawView_BallStartY,10);//设置默认值
         mCircleR = a.getFloat(R.styleable.DrawView_BallRadius,10);
         mBallColor = a.getColor(R.styleable.DrawView_BallColor, 0x990000FF);
-        a.recycle();
-
+        a.recycle();//回收a。
     }
 
 
@@ -49,7 +48,7 @@ public class DrawView extends View {
         mCircleX = event.getX();
         mCircleY = event.getY();
 
-        this.invalidate();
+        this.invalidate();//刷新viewdc
         return true;
     }
 
